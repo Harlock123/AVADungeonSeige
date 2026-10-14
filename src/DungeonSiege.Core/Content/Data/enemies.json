@@ -1,0 +1,39 @@
+[
+  {
+    "id": "krug_scout",
+    "name": "Krug Scout",
+    "description": "Wiry raiders that skirmish ahead of the war band, hurling crude spears.",
+    "tags": [ "krug" ],
+    "maxHealth": 18, "armor": 0,
+    "minDamage": 1, "maxDamage": 3,
+    "ranged": true, "attackRange": 7, "attackCooldown": 2.0,
+    "moveSpeed": 4.3, "aggroRadius": 12, "leashRadius": 28,
+    "experience": 12, "goldMin": 1, "goldMax": 4, "potionDropChance": 0.12,
+    "radius": 0.5, "color": "#9a7444"
+  },
+  {
+    "id": "krug_grunt",
+    "name": "Krug Grunt",
+    "description": "Brutish foot soldiers of the Krug, armed with clubs and stolen farm tools.",
+    "tags": [ "krug" ],
+    "maxHealth": 32, "armor": 1,
+    "minDamage": 2, "maxDamage": 5,
+    "attackRange": 1.5, "attackCooldown": 1.5,
+    "moveSpeed": 3.6, "aggroRadius": 10, "leashRadius": 26,
+    "experience": 20, "goldMin": 2, "goldMax": 8, "potionDropChance": 0.15,
+    "radius": 0.62, "color": "#6f5530"
+  },
+  {
+    "id": "braak",
+    "name": "Braak",
+    "description": "A hulking, tusked beast the Krug have goaded into leading their raid.",
+    "tags": [ "boss" ],
+    "rank": "Boss",
+    "maxHealth": 150, "armor": 2,
+    "minDamage": 5, "maxDamage": 11,
+    "attackRange": 2.0, "attackCooldown": 2.2,
+    "moveSpeed": 3.2, "aggroRadius": 12, "leashRadius": 35,
+    "experience": 120, "goldMin": 25, "goldMax": 40, "potionDropChance": 1.0,
+    "radius": 1.1, "color": "#4e3a26"
+  }
+]

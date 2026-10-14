@@ -1,0 +1,35 @@
+[
+  {
+    "id": "farmer",
+    "name": "Ardan",
+    "title": "Farmer of the Vale",
+    "portraitColor": "#7a5230",
+    "strength": 11, "dexterity": 10, "intelligence": 9,
+    // Classless: the farmer can pick up anything. What they *use* decides what they become.
+    "loadout": { "Melee": "rusty_sword", "Ranged": "hunting_bow", "CombatMagic": "zap", "NatureMagic": "healing_hands" },
+    "activeSkill": "Melee",
+    "behavior": "Aggressive"
+  },
+  {
+    "id": "merik",
+    "name": "Merik",
+    "title": "Forester",
+    "portraitColor": "#3f5a2c",
+    "strength": 10, "dexterity": 13, "intelligence": 9,
+    "skills": { "Ranged": 3, "Melee": 1 },
+    "loadout": { "Ranged": "yew_longbow", "Melee": "skinning_knife" },
+    "activeSkill": "Ranged",
+    "behavior": "Defend"
+  },
+  {
+    "id": "ilsa",
+    "name": "Sister Ilsa",
+    "title": "Keeper of the Wayshrine",
+    "portraitColor": "#2f4f6f",
+    "strength": 9, "dexterity": 10, "intelligence": 14,
+    "skills": { "NatureMagic": 3, "CombatMagic": 1 },
+    "loadout": { "NatureMagic": "healing_hands", "CombatMagic": "zap", "Melee": "oak_staff" },
+    "activeSkill": "NatureMagic",
+    "behavior": "Defend"
+  }
+]

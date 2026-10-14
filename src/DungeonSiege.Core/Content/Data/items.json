@@ -1,0 +1,20 @@
+[
+  // ----- Melee --------------------------------------------------------------
+  { "id": "rusty_sword",   "name": "Rusty Short Sword", "kind": "Weapon", "skill": "Melee",  "minPower": 3, "maxPower": 6, "range": 1.4, "cooldown": 1.1, "icon": "IconSword" },
+  { "id": "skinning_knife","name": "Skinning Knife",    "kind": "Weapon", "skill": "Melee",  "minPower": 2, "maxPower": 4, "range": 1.2, "cooldown": 0.8, "icon": "IconSword" },
+  { "id": "oak_staff",     "name": "Oak Staff",         "kind": "Weapon", "skill": "Melee",  "minPower": 2, "maxPower": 5, "range": 1.7, "cooldown": 1.3, "icon": "IconStaff" },
+
+  // ----- Ranged -------------------------------------------------------------
+  { "id": "hunting_bow",   "name": "Hunting Bow",       "kind": "Weapon", "skill": "Ranged", "minPower": 2, "maxPower": 5, "range": 11, "cooldown": 1.5, "icon": "IconBow" },
+  { "id": "yew_longbow",   "name": "Yew Longbow",       "kind": "Weapon", "skill": "Ranged", "minPower": 3, "maxPower": 7, "range": 13, "cooldown": 1.7, "icon": "IconBow" },
+
+  // ----- Spells ---------------------------------------------------------------
+  { "id": "zap",           "name": "Zap",               "kind": "Spell",  "skill": "CombatMagic", "effect": "Damage", "minPower": 4, "maxPower": 8,  "range": 10, "cooldown": 1.6, "manaCost": 4, "icon": "IconBolt",
+    "description": "A crackling bolt of raw combat magic." },
+  { "id": "healing_hands", "name": "Healing Hands",     "kind": "Spell",  "skill": "NatureMagic", "effect": "Heal",   "minPower": 8, "maxPower": 13, "range": 9,  "cooldown": 2.0, "manaCost": 6, "icon": "IconLeaf",
+    "description": "Nature magic that knits wounds on the most injured ally." },
+
+  // ----- Consumables ------------------------------------------------------------
+  { "id": "potion_health", "name": "Small Health Potion", "kind": "Potion", "restoreHealth": 40, "icon": "IconFlask" },
+  { "id": "potion_mana",   "name": "Small Mana Potion",   "kind": "Potion", "restoreMana": 30,   "icon": "IconFlask" }
+]

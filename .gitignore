@@ -1,0 +1,15 @@
+bin/
+obj/
+.idea/
+.vs/
+*.user
+*.rsuser
+*.suo
+TestResults/
+__pycache__/
+*.pyc
+
+# Publish output (build.sh / build.ps1, CI)
+BUILDS/
+publish/
+artifacts/

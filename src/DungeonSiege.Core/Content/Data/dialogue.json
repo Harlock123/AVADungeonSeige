@@ -1,0 +1,98 @@
+[
+  {
+    "id": "hollin_dying",
+    "start": "start",
+    "nodes": [
+      {
+        "id": "start", "speaker": "Old Hollin",
+        "text": "*cough* ...You came. The Krug... they poured over the ridge at dawn. Burned everything. I'm finished, friend — don't argue with an old man.",
+        "choices": [
+          { "text": "Who did this? Krug never come this far west.", "next": "krug" },
+          { "text": "Hold on, Hollin. Tell me what to do.", "next": "task" }
+        ]
+      },
+      {
+        "id": "krug", "speaker": "Old Hollin",
+        "text": "Krug... dozens of them, bolder than I've ever seen. Something drives them from the canyons — and a great Braak runs at the head of the pack.",
+        "choices": [ { "text": "Then someone has to stop them.", "next": "task" } ]
+      },
+      {
+        "id": "task", "speaker": "Old Hollin",
+        "text": "Glacern. The garrison at Glacern must be warned. Follow the road east — through the fields, through the canyons. Take my potions. They're no use to me now.",
+        "choices": [
+          { "text": "I'll reach Glacern. I swear it.", "next": "farewell",
+            "actions": [ "quest.start:travel_to_glacern", "give:potion_health:3" ] }
+        ]
+      },
+      {
+        "id": "farewell", "speaker": "Old Hollin",
+        "text": "Good... Ehb needs... (Old Hollin's grip loosens, and he breathes his last.)",
+        "choices": [
+          { "text": "Rest now, old friend.",
+            "actions": [ "story:Old Hollin is dead. Krug howls echo from the burning barn to the east." ] }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "merik_recruit",
+    "start": "start",
+    "nodes": [
+      {
+        "id": "start", "speaker": "Merik",
+        "text": "Easy! I nearly put an arrow in you — thought you were another Krug. They torched my lodge. I've been picking them off from the treeline since sunrise.",
+        "choices": [
+          { "text": "Come with me. I'm bound for Glacern.", "next": "join", "actions": [ "recruit:merik" ] },
+          { "text": "Stay hidden. Good luck.", "next": null }
+        ]
+      },
+      {
+        "id": "join", "speaker": "Merik",
+        "text": "Glacern? Better than waiting for them to find me. My bow is yours — I'll cover you from behind."
+      }
+    ]
+  },
+  {
+    "id": "ilsa_recruit",
+    "start": "start",
+    "nodes": [
+      {
+        "id": "start", "speaker": "Sister Ilsa",
+        "text": "Travellers, out of the canyons alive? Come, rest by the shrine. The old powers of Ehb still answer here.",
+        "choices": [
+          { "text": "We would be grateful.", "next": "rest", "actions": [ "heal" ] }
+        ]
+      },
+      {
+        "id": "rest", "speaker": "Sister Ilsa",
+        "text": "There. The Krug have never dared this road before... Glacern will need every hand. Will you take mine?",
+        "choices": [
+          { "text": "Walk with us, Sister.", "next": "join", "actions": [ "recruit:ilsa" ] },
+          { "text": "Keep the shrine safe. We go on alone.", "next": null }
+        ]
+      },
+      {
+        "id": "join", "speaker": "Sister Ilsa",
+        "text": "Then let nature's grace go with us. I will keep you standing."
+      }
+    ]
+  },
+  {
+    "id": "captain_glacern",
+    "start": "start",
+    "nodes": [
+      {
+        "id": "start", "speaker": "Captain of the Guard",
+        "text": "Halt! ...Farmers, out of the west? Through the canyons? Speak, and quickly.",
+        "choices": [
+          { "text": "The Krug have overrun the farmlands. Old Hollin is dead.", "next": "news" }
+        ]
+      },
+      {
+        "id": "news", "speaker": "Captain of the Guard",
+        "text": "Then it's worse than the reports said. A Braak leading Krug... Something stirs beneath Ehb. You have done the kingdom a service today. Glacern's gates are open to you.",
+        "choices": [ { "text": "We'll be ready when you need us." } ]
+      }
+    ]
+  }
+]

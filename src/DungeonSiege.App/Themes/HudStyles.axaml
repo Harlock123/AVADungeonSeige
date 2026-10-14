@@ -1,0 +1,253 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+  <!-- ===== HUD frame ===== -->
+  <Style Selector="Border.hudOuter">
+    <Setter Property="Background" Value="{DynamicResource StoneDarkBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource StoneBlackBrush}" />
+    <Setter Property="BorderThickness" Value="0,2,0,0" />
+    <Setter Property="Height" Value="206" />
+    <Setter Property="BoxShadow" Value="0 -6 18 2 #C0000000" />
+  </Style>
+  <Style Selector="Border.hudTrim">
+    <Setter Property="Height" Value="3" />
+    <Setter Property="VerticalAlignment" Value="Top" />
+    <Setter Property="Background" Value="{DynamicResource GoldTrimBrush}" />
+  </Style>
+  <Style Selector="Border.inset">
+    <Setter Property="Background" Value="{DynamicResource InsetBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource StoneLightBrush}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="CornerRadius" Value="3" />
+    <Setter Property="BoxShadow" Value="inset 0 2 8 0 #E0000000" />
+  </Style>
+  <Style Selector="Border.logPanel">
+    <Setter Property="Background" Value="#D00A0806" />
+    <Setter Property="BorderBrush" Value="{DynamicResource GoldDarkBrush}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="CornerRadius" Value="2" />
+    <Setter Property="Padding" Value="8,4" />
+    <Setter Property="BoxShadow" Value="inset 0 2 10 0 #FF000000" />
+  </Style>
+  <Style Selector="Rectangle.divider">
+    <Setter Property="Width" Value="2" />
+    <Setter Property="Height" Value="44" />
+    <Setter Property="Margin" Value="4,0" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+    <Setter Property="Fill" Value="{DynamicResource GoldDarkBrush}" />
+  </Style>
+  <Style Selector="Rectangle.rule">
+    <Setter Property="Height" Value="1" />
+    <Setter Property="Margin" Value="0,4" />
+    <Setter Property="Fill" Value="{DynamicResource GoldTrimBrush}" />
+  </Style>
+
+  <!-- ===== Text ===== -->
+  <Style Selector="TextBlock.label">
+    <Setter Property="FontFamily" Value="{DynamicResource SerifFont}" />
+    <Setter Property="FontSize" Value="12" />
+    <Setter Property="Foreground" Value="{DynamicResource ParchmentDimBrush}" />
+  </Style>
+  <Style Selector="TextBlock.value">
+    <Setter Property="FontFamily" Value="{DynamicResource SerifFont}" />
+    <Setter Property="FontSize" Value="13" />
+    <Setter Property="Foreground" Value="{DynamicResource ParchmentBrush}" />
+  </Style>
+  <Style Selector="TextBlock.gold">
+    <Setter Property="FontFamily" Value="{DynamicResource SerifFont}" />
+    <Setter Property="Foreground" Value="{DynamicResource GoldBrightBrush}" />
+    <Setter Property="FontSize" Value="14" />
+  </Style>
+  <Style Selector="TextBlock.hint">
+    <Setter Property="FontFamily" Value="{DynamicResource BodyFont}" />
+    <Setter Property="FontStyle" Value="Italic" />
+    <Setter Property="FontSize" Value="12" />
+    <Setter Property="Foreground" Value="{DynamicResource ParchmentDimBrush}" />
+  </Style>
+  <Style Selector="TextBlock.log">
+    <Setter Property="FontFamily" Value="{DynamicResource BodyFont}" />
+    <Setter Property="FontSize" Value="13" />
+    <Setter Property="TextWrapping" Value="Wrap" />
+    <Setter Property="Margin" Value="0,1" />
+  </Style>
+
+  <!-- ===== World overlays ===== -->
+  <Style Selector="Border.tracker">
+    <Setter Property="Background" Value="{DynamicResource OverlayPlateBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource GoldDarkBrush}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="CornerRadius" Value="3" />
+    <Setter Property="Padding" Value="12,8" />
+  </Style>
+  <Style Selector="TextBlock.trackerTitle">
+    <Setter Property="FontFamily" Value="{DynamicResource SerifFont}" />
+    <Setter Property="FontSize" Value="15" />
+    <Setter Property="FontWeight" Value="SemiBold" />
+    <Setter Property="Foreground" Value="{DynamicResource GoldBrightBrush}" />
+  </Style>
+  <Style Selector="TextBlock.trackerObjective">
+    <Setter Property="FontFamily" Value="{DynamicResource BodyFont}" />
+    <Setter Property="FontSize" Value="13" />
+    <Setter Property="Foreground" Value="{DynamicResource ParchmentBrush}" />
+    <Setter Property="MaxWidth" Value="320" />
+    <Setter Property="TextWrapping" Value="Wrap" />
+  </Style>
+  <Style Selector="TextBlock.bannerTitle">
+    <Setter Property="FontFamily" Value="{DynamicResource SerifFont}" />
+    <Setter Property="FontSize" Value="34" />
+    <Setter Property="FontWeight" Value="SemiBold" />
+    <Setter Property="LetterSpacing" Value="3" />
+    <Setter Property="HorizontalAlignment" Value="Center" />
+    <Setter Property="Foreground" Value="{DynamicResource GoldBrightBrush}" />
+    <Setter Property="Effect" Value="drop-shadow(0 2 6 #FF000000)" />
+  </Style>
+  <Style Selector="TextBlock.bannerSubtitle">
+    <Setter Property="FontFamily" Value="{DynamicResource BodyFont}" />
+    <Setter Property="FontStyle" Value="Italic" />
+    <Setter Property="FontSize" Value="16" />
+    <Setter Property="HorizontalAlignment" Value="Center" />
+    <Setter Property="Foreground" Value="{DynamicResource ParchmentBrush}" />
+    <Setter Property="Effect" Value="drop-shadow(0 2 4 #FF000000)" />
+  </Style>
+  <Style Selector="Rectangle.bannerRule">
+    <Setter Property="Height" Value="2" />
+    <Setter Property="Width" Value="360" />
+    <Setter Property="Margin" Value="0,6" />
+    <Setter Property="Fill" Value="{DynamicResource GoldTrimBrush}" />
+  </Style>
+  <Style Selector="Border.pausedPlate">
+    <Setter Property="Background" Value="{DynamicResource OverlayPlateBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource GoldBrush}" />
+    <Setter Property="BorderThickness" Value="0,1" />
+    <Setter Property="Padding" Value="60,12" />
+  </Style>
+  <Style Selector="TextBlock.pausedText">
+    <Setter Property="FontFamily" Value="{DynamicResource SerifFont}" />
+    <Setter Property="FontSize" Value="30" />
+    <Setter Property="LetterSpacing" Value="10" />
+    <Setter Property="HorizontalAlignment" Value="Center" />
+    <Setter Property="Foreground" Value="{DynamicResource GoldBrightBrush}" />
+  </Style>
+  <Style Selector="TextBlock.dialogueText">
+    <Setter Property="FontFamily" Value="{DynamicResource BodyFont}" />
+    <Setter Property="FontSize" Value="16" />
+    <Setter Property="LineHeight" Value="23" />
+    <Setter Property="TextWrapping" Value="Wrap" />
+    <Setter Property="Foreground" Value="{DynamicResource ParchmentBrush}" />
+  </Style>
+
+  <!-- ===== Portraits ===== -->
+  <Style Selector="Border.portrait">
+    <Setter Property="CornerRadius" Value="1" />
+    <Setter Property="ClipToBounds" Value="True" />
+  </Style>
+  <Style Selector="TextBlock.portraitInitial">
+    <Setter Property="FontFamily" Value="{DynamicResource SerifFont}" />
+    <Setter Property="FontSize" Value="38" />
+    <Setter Property="FontWeight" Value="Bold" />
+    <Setter Property="HorizontalAlignment" Value="Center" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+    <Setter Property="Margin" Value="0,0,0,10" />
+    <Setter Property="Foreground" Value="#D0F0D27A" />
+    <Setter Property="Effect" Value="drop-shadow(0 2 3 #FF000000)" />
+  </Style>
+  <Style Selector="Border.nameplate">
+    <Setter Property="Background" Value="#C0000000" />
+    <Setter Property="VerticalAlignment" Value="Bottom" />
+    <Setter Property="Padding" Value="2,1" />
+  </Style>
+  <Style Selector="Border.nameplate > TextBlock">
+    <Setter Property="FontFamily" Value="{DynamicResource SerifFont}" />
+    <Setter Property="FontSize" Value="11" />
+    <Setter Property="HorizontalAlignment" Value="Center" />
+    <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+    <Setter Property="Foreground" Value="{DynamicResource ParchmentBrush}" />
+  </Style>
+  <Style Selector="Border.levelBadge">
+    <Setter Property="Background" Value="{DynamicResource GoldActiveBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource GoldBrush}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="CornerRadius" Value="9" />
+    <Setter Property="MinWidth" Value="18" />
+    <Setter Property="Height" Value="18" />
+    <Setter Property="Margin" Value="2" />
+    <Setter Property="HorizontalAlignment" Value="Right" />
+    <Setter Property="VerticalAlignment" Value="Top" />
+  </Style>
+  <Style Selector="Border.levelBadge > TextBlock">
+    <Setter Property="FontSize" Value="11" />
+    <Setter Property="FontWeight" Value="Bold" />
+    <Setter Property="HorizontalAlignment" Value="Center" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+    <Setter Property="Foreground" Value="{DynamicResource GoldBrightBrush}" />
+  </Style>
+  <Style Selector="Border.downOverlay">
+    <Setter Property="Background" Value="#B0300000" />
+  </Style>
+  <Style Selector="Border.downOverlay > TextBlock">
+    <Setter Property="FontFamily" Value="{DynamicResource SerifFont}" />
+    <Setter Property="FontSize" Value="10" />
+    <Setter Property="Foreground" Value="#FFE07070" />
+    <Setter Property="HorizontalAlignment" Value="Center" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+  </Style>
+
+  <!-- ===== Slots ===== -->
+  <Style Selector="Path.slotIcon">
+    <Setter Property="Stretch" Value="Uniform" />
+    <Setter Property="Margin" Value="8" />
+    <Setter Property="StrokeThickness" Value="1.8" />
+    <Setter Property="StrokeLineCap" Value="Round" />
+    <Setter Property="StrokeJoin" Value="Round" />
+    <Setter Property="Stroke" Value="{DynamicResource ParchmentBrush}" />
+  </Style>
+  <Style Selector="Button.active Path.slotIcon">
+    <Setter Property="Stroke" Value="{DynamicResource GoldBrightBrush}" />
+  </Style>
+  <Style Selector="Path.slotIcon.health">
+    <Setter Property="Fill" Value="{DynamicResource HealthBrush}" />
+  </Style>
+  <Style Selector="Path.slotIcon.mana">
+    <Setter Property="Fill" Value="{DynamicResource ManaBrush}" />
+  </Style>
+  <Style Selector="TextBlock.hotkey">
+    <Setter Property="FontSize" Value="10" />
+    <Setter Property="Margin" Value="1,-1" />
+    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="VerticalAlignment" Value="Top" />
+    <Setter Property="Foreground" Value="{DynamicResource ParchmentDimBrush}" />
+  </Style>
+  <Style Selector="TextBlock.slotBadge">
+    <Setter Property="FontSize" Value="11" />
+    <Setter Property="FontWeight" Value="Bold" />
+    <Setter Property="Margin" Value="1,-1" />
+    <Setter Property="HorizontalAlignment" Value="Right" />
+    <Setter Property="VerticalAlignment" Value="Bottom" />
+    <Setter Property="Foreground" Value="{DynamicResource GoldBrightBrush}" />
+    <Setter Property="Effect" Value="drop-shadow(0 1 2 #FF000000)" />
+  </Style>
+  <Style Selector="Button.small">
+    <Setter Property="Padding" Value="8,2" />
+    <Setter Property="FontSize" Value="11" />
+  </Style>
+
+  <!-- ===== Minimap & compass ===== -->
+  <Style Selector="Ellipse.compassRing">
+    <Setter Property="Fill" Value="{DynamicResource StoneBlackBrush}" />
+    <Setter Property="Stroke" Value="{DynamicResource GoldDarkBrush}" />
+    <Setter Property="StrokeThickness" Value="2" />
+  </Style>
+  <Style Selector="Ellipse.minimapRim">
+    <Setter Property="Stroke" Value="{DynamicResource GoldBrush}" />
+    <Setter Property="StrokeThickness" Value="2" />
+  </Style>
+  <Style Selector="TextBlock.compass">
+    <Setter Property="FontFamily" Value="{DynamicResource SerifFont}" />
+    <Setter Property="FontWeight" Value="Bold" />
+    <Setter Property="FontSize" Value="11" />
+    <Setter Property="Foreground" Value="{DynamicResource GoldBrush}" />
+  </Style>
+  <Style Selector="TextBlock.compass.north">
+    <Setter Property="Foreground" Value="#E0303A" />
+  </Style>
+</Styles>

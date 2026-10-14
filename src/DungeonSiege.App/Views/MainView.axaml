@@ -1,0 +1,305 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:DungeonSiege.App.ViewModels"
+             xmlns:ctl="using:DungeonSiege.App.Controls"
+             xmlns:conv="using:DungeonSiege.App.Converters"
+             mc:Ignorable="d" d:DesignWidth="1366" d:DesignHeight="840"
+             x:Class="DungeonSiege.App.Views.MainView"
+             x:DataType="vm:MainViewModel">
+  <Design.DataContext>
+    <vm:MainViewModel />
+  </Design.DataContext>
+
+  <Grid RowDefinitions="*,Auto">
+
+    <!-- ═══════════════════════════ WORLD VIEWPORT ═══════════════════════════ -->
+    <Panel Grid.Row="0">
+      <ctl:WorldView x:Name="World"
+                     Session="{Binding Session}"
+                     InteractCommand="{Binding InteractAtCommand}" />
+
+      <!-- Quest tracker (top-left) -->
+      <Border Classes="tracker" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="14"
+              IsVisible="{Binding HasQuest}">
+        <StackPanel Spacing="2">
+          <TextBlock Classes="trackerTitle" Text="{Binding QuestTitle}" />
+          <TextBlock Classes="trackerObjective" Text="{Binding QuestObjective}" />
+        </StackPanel>
+      </Border>
+
+      <!-- Purse & controls hint (top-right) -->
+      <StackPanel HorizontalAlignment="Right" VerticalAlignment="Top" Margin="14" Spacing="6">
+        <Border Classes="tracker" HorizontalAlignment="Right">
+          <TextBlock Classes="gold" Text="{Binding GoldText}" />
+        </Border>
+        <TextBlock Classes="hint" HorizontalAlignment="Right" TextAlignment="Right"
+                   Text="Click to move / attack / talk · Space pause · 1-4 weapons · C character · H/M potions" />
+      </StackPanel>
+
+      <!-- Region title card: the only "transition" the seamless world ever shows -->
+      <StackPanel IsVisible="{Binding ShowRegionBanner}" IsHitTestVisible="False"
+                  HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,56,0,0">
+        <TextBlock Classes="bannerTitle" Text="{Binding RegionName}" />
+        <Rectangle Classes="bannerRule" />
+        <TextBlock Classes="bannerSubtitle" Text="{Binding RegionSubtitle}" />
+      </StackPanel>
+
+      <!-- Pause plate -->
+      <Border Classes="pausedPlate" IsVisible="{Binding IsPaused}" IsHitTestVisible="False"
+              HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,28">
+        <StackPanel Spacing="4">
+          <TextBlock Classes="pausedText" Text="PAUSED" />
+          <TextBlock Classes="hint" HorizontalAlignment="Center" Text="Orders given now are carried out when you resume" />
+        </StackPanel>
+      </Border>
+
+      <!-- Character sheet -->
+      <HeaderedContentControl Theme="{StaticResource StoneWindow}"
+                              IsVisible="{Binding IsCharacterSheetOpen}"
+                              Header="{Binding SelectedMember.Name}"
+                              Content="{Binding SelectedMember}"
+                              HorizontalAlignment="Right" VerticalAlignment="Top"
+                              Margin="14,80,14,14" Width="320">
+        <HeaderedContentControl.ContentTemplate>
+          <DataTemplate x:DataType="vm:PartyMemberViewModel">
+            <StackPanel Spacing="6">
+              <TextBlock Classes="hint" Text="{Binding Title}" />
+              <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto,Auto,Auto">
+                <TextBlock Classes="label" Text="Level" />
+                <TextBlock Grid.Column="1" Classes="gold" Text="{Binding Level}" />
+                <TextBlock Grid.Row="1" Classes="label" Text="Strength" />
+                <TextBlock Grid.Row="1" Grid.Column="1" Classes="value" Text="{Binding Strength}" />
+                <TextBlock Grid.Row="2" Classes="label" Text="Dexterity" />
+                <TextBlock Grid.Row="2" Grid.Column="1" Classes="value" Text="{Binding Dexterity}" />
+                <TextBlock Grid.Row="3" Classes="label" Text="Intelligence" />
+                <TextBlock Grid.Row="3" Grid.Column="1" Classes="value" Text="{Binding Intelligence}" />
+              </Grid>
+              <Rectangle Classes="rule" />
+              <Grid ColumnDefinitions="64,*,90" RowDefinitions="Auto,Auto" >
+                <TextBlock Classes="label" Text="Health" VerticalAlignment="Center" />
+                <ProgressBar Grid.Column="1" Classes="health" Height="10" Margin="0,3"
+                             Maximum="{Binding MaxHealth}" Value="{Binding Health}" />
+                <TextBlock Grid.Column="2" Classes="value" Text="{Binding HealthText}" HorizontalAlignment="Right" />
+                <TextBlock Grid.Row="1" Classes="label" Text="Mana" VerticalAlignment="Center" />
+                <ProgressBar Grid.Row="1" Grid.Column="1" Classes="mana" Height="10" Margin="0,3"
+                             Maximum="{Binding MaxMana}" Value="{Binding Mana}" />
+                <TextBlock Grid.Row="1" Grid.Column="2" Classes="value" Text="{Binding ManaText}" HorizontalAlignment="Right" />
+              </Grid>
+              <Rectangle Classes="rule" />
+              <TextBlock Classes="label" Text="Skills" />
+              <ItemsControl ItemsSource="{Binding Skills}">
+                <ItemsControl.ItemTemplate>
+                  <DataTemplate x:DataType="vm:SkillViewModel">
+                    <Grid ColumnDefinitions="110,*,28" Margin="0,2" ToolTip.Tip="{Binding ExperienceText}">
+                      <TextBlock Classes="value" Text="{Binding Name}" />
+                      <ProgressBar Grid.Column="1" Classes="xp" Height="8" Maximum="100"
+                                   Value="{Binding Progress}" VerticalAlignment="Center" />
+                      <TextBlock Grid.Column="2" Classes="gold" Text="{Binding Level}" HorizontalAlignment="Right" />
+                    </Grid>
+                  </DataTemplate>
+                </ItemsControl.ItemTemplate>
+              </ItemsControl>
+              <Rectangle Classes="rule" />
+              <TextBlock Classes="label">
+                <Run Text="Wielding: " /><Run Text="{Binding ActiveWeapon}" Foreground="{DynamicResource ParchmentBrush}" />
+              </TextBlock>
+              <TextBlock Classes="hint" TextWrapping="Wrap"
+                         Text="There are no classes in Ehb. Skills rise only through use, and attributes follow the skills you practise." />
+            </StackPanel>
+          </DataTemplate>
+        </HeaderedContentControl.ContentTemplate>
+      </HeaderedContentControl>
+
+      <!-- Dialogue -->
+      <HeaderedContentControl Theme="{StaticResource StoneWindow}"
+                              IsVisible="{Binding IsDialogueOpen}"
+                              Header="{Binding DialogueSpeaker}"
+                              HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                              Margin="0,0,0,28" Width="640">
+        <StackPanel Spacing="12">
+          <TextBlock Classes="dialogueText" Text="{Binding DialogueText}" />
+          <ItemsControl ItemsSource="{Binding DialogueChoices}">
+            <ItemsControl.ItemTemplate>
+              <DataTemplate x:DataType="vm:DialogueChoiceViewModel">
+                <Button Theme="{StaticResource DialogueChoiceButton}" HorizontalAlignment="Stretch"
+                        Content="{Binding Label}" Command="{Binding Command}" />
+              </DataTemplate>
+            </ItemsControl.ItemTemplate>
+          </ItemsControl>
+        </StackPanel>
+      </HeaderedContentControl>
+    </Panel>
+
+    <!-- ═══════════════════════════════ HUD ═══════════════════════════════ -->
+    <Border Grid.Row="1" Classes="hudOuter">
+      <Panel>
+        <ctl:StoneBackdrop />
+        <Border Classes="hudTrim" />
+
+        <Grid ColumnDefinitions="Auto,*,Auto" Margin="12,14,12,10">
+
+          <!-- Left: party portraits with vertical health / mana vials -->
+          <Border Grid.Column="0" Classes="inset" Padding="8" VerticalAlignment="Stretch">
+            <DockPanel>
+              <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Spacing="4" Margin="0,8,0,0">
+                <TextBlock Classes="label" Text="Orders" VerticalAlignment="Center" Margin="0,0,4,0" />
+                <ItemsControl ItemsSource="{Binding BehaviorOptions}">
+                  <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                      <StackPanel Orientation="Horizontal" Spacing="4" />
+                    </ItemsPanelTemplate>
+                  </ItemsControl.ItemsPanel>
+                  <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="vm:BehaviorOptionViewModel">
+                      <Button Classes="small" Classes.active="{Binding IsActive}"
+                              Content="{Binding Label}" Command="{Binding Command}"
+                              ToolTip.Tip="{Binding Tooltip}" />
+                    </DataTemplate>
+                  </ItemsControl.ItemTemplate>
+                </ItemsControl>
+              </StackPanel>
+
+              <ItemsControl ItemsSource="{Binding Party}">
+                <ItemsControl.ItemsPanel>
+                  <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal" Spacing="6" />
+                  </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                  <DataTemplate x:DataType="vm:PartyMemberViewModel">
+                    <Button Theme="{StaticResource PortraitButton}"
+                            Classes.selected="{Binding IsSelected}"
+                            Command="{Binding SelectCommand}">
+                      <ToolTip.Tip>
+                        <StackPanel>
+                          <TextBlock Text="{Binding Name}" FontWeight="Bold" />
+                          <TextBlock Text="{Binding Title}" FontStyle="Italic" />
+                          <TextBlock Text="{Binding HealthText, StringFormat='Health {0}'}" />
+                          <TextBlock Text="{Binding ManaText, StringFormat='Mana {0}'}" />
+                        </StackPanel>
+                      </ToolTip.Tip>
+                      <Grid ColumnDefinitions="Auto,Auto,Auto">
+                        <Panel Width="64" Height="86">
+                          <Border Classes="portrait"
+                                  Background="{Binding PortraitColor, Converter={x:Static conv:Converters.PortraitBrush}}">
+                            <TextBlock Classes="portraitInitial" Text="{Binding Initial}" />
+                          </Border>
+                          <Border Classes="levelBadge">
+                            <TextBlock Text="{Binding Level}" />
+                          </Border>
+                          <Border Classes="nameplate">
+                            <TextBlock Text="{Binding Name}" />
+                          </Border>
+                          <Border Classes="downOverlay" IsVisible="{Binding IsDown}">
+                            <TextBlock Text="UNCONSCIOUS" />
+                          </Border>
+                        </Panel>
+                        <ProgressBar Grid.Column="1" Orientation="Vertical" Classes="health"
+                                     Width="11" Margin="4,0,0,0"
+                                     Maximum="{Binding MaxHealth}" Value="{Binding Health}" />
+                        <ProgressBar Grid.Column="2" Orientation="Vertical" Classes="mana"
+                                     Width="11" Margin="2,0,0,0"
+                                     Maximum="{Binding MaxMana}" Value="{Binding Mana}" />
+                      </Grid>
+                    </Button>
+                  </DataTemplate>
+                </ItemsControl.ItemTemplate>
+              </ItemsControl>
+            </DockPanel>
+          </Border>
+
+          <!-- Centre: weapon / spell belt, potions, and the action log -->
+          <Grid Grid.Column="1" RowDefinitions="Auto,*" Margin="12,0">
+            <StackPanel Orientation="Horizontal" Spacing="6">
+              <ItemsControl ItemsSource="{Binding Slots}">
+                <ItemsControl.ItemsPanel>
+                  <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal" Spacing="6" />
+                  </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                  <DataTemplate x:DataType="vm:SlotViewModel">
+                    <Button Theme="{StaticResource SlotButton}"
+                            Classes.active="{Binding IsActive}"
+                            IsEnabled="{Binding IsAvailable}"
+                            Command="{Binding ActivateCommand}"
+                            ToolTip.Tip="{Binding Tooltip}">
+                      <Panel>
+                        <Path Classes="slotIcon" Data="{Binding IconKey, Converter={x:Static conv:Converters.IconGeometry}}" />
+                        <TextBlock Classes="hotkey" Text="{Binding Hotkey}" />
+                        <TextBlock Classes="slotBadge" Text="{Binding LevelText}" />
+                      </Panel>
+                    </Button>
+                  </DataTemplate>
+                </ItemsControl.ItemTemplate>
+              </ItemsControl>
+
+              <Rectangle Classes="divider" />
+
+              <ItemsControl ItemsSource="{Binding Inventory}">
+                <ItemsControl.ItemsPanel>
+                  <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal" Spacing="6" />
+                  </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                  <DataTemplate x:DataType="vm:InventorySlotViewModel">
+                    <Button Theme="{StaticResource SlotButton}" Command="{Binding Command}" ToolTip.Tip="{Binding Tooltip}">
+                      <Panel>
+                        <Path Classes="slotIcon" Classes.health="{Binding IsHealth}" Classes.mana="{Binding IsMana}"
+                              Data="{Binding IconKey, Converter={x:Static conv:Converters.IconGeometry}}" />
+                        <TextBlock Classes="hotkey" Text="{Binding Hotkey}" />
+                        <TextBlock Classes="slotBadge" Text="{Binding Count}" />
+                      </Panel>
+                    </Button>
+                  </DataTemplate>
+                </ItemsControl.ItemTemplate>
+              </ItemsControl>
+
+              <Rectangle Classes="divider" />
+
+              <Button Theme="{StaticResource SlotButton}" Classes.active="{Binding IsPaused}"
+                      Command="{Binding TogglePauseCommand}" ToolTip.Tip="Pause / resume [Space]">
+                <Path Classes="slotIcon" Data="{StaticResource IconPause}" />
+              </Button>
+              <Button Theme="{StaticResource SlotButton}" Classes.active="{Binding IsCharacterSheetOpen}"
+                      Command="{Binding ToggleCharacterSheetCommand}" ToolTip.Tip="Character sheet [C]">
+                <Path Classes="slotIcon" Data="{StaticResource IconScroll}" />
+              </Button>
+            </StackPanel>
+
+            <Border Grid.Row="1" Classes="logPanel" Margin="0,8,0,0">
+              <ScrollViewer x:Name="LogScroller" VerticalScrollBarVisibility="Auto">
+                <ItemsControl ItemsSource="{Binding Log}">
+                  <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="vm:LogEntryViewModel">
+                      <TextBlock Classes="log" Text="{Binding Text}"
+                                 Foreground="{Binding Kind, Converter={x:Static conv:Converters.MessageBrush}}" />
+                    </DataTemplate>
+                  </ItemsControl.ItemTemplate>
+                </ItemsControl>
+              </ScrollViewer>
+            </Border>
+          </Grid>
+
+          <!-- Right: minimap inside a compass ring -->
+          <StackPanel Grid.Column="2" Width="190" Spacing="2">
+            <Grid Width="150" Height="150" HorizontalAlignment="Center">
+              <Ellipse Classes="compassRing" />
+              <ctl:MinimapView x:Name="Minimap" Session="{Binding Session}" Margin="14" />
+              <Ellipse Classes="minimapRim" Margin="14" />
+              <TextBlock Classes="compass north" Text="N" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,-1,0,0" />
+              <TextBlock Classes="compass" Text="E" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,3,0" />
+              <TextBlock Classes="compass" Text="S" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,-1" />
+              <TextBlock Classes="compass" Text="W" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3,0,0,0" />
+            </Grid>
+            <TextBlock Classes="gold" Text="{Binding RegionName}" HorizontalAlignment="Center" TextTrimming="CharacterEllipsis" />
+            <TextBlock Classes="hint" Text="{Binding StreamingStatus}" HorizontalAlignment="Center" FontSize="11" />
+          </StackPanel>
+        </Grid>
+      </Panel>
+    </Border>
+  </Grid>
+</UserControl>

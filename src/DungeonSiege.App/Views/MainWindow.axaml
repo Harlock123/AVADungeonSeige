@@ -1,0 +1,15 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:DungeonSiege.App.ViewModels"
+        xmlns:views="using:DungeonSiege.App.Views"
+        x:Class="DungeonSiege.App.Views.MainWindow"
+        x:DataType="vm:MainViewModel"
+        Title="Dungeon Siege — The Kingdom of Ehb"
+        Icon="/Assets/app.ico"
+        Width="1366" Height="840" MinWidth="1100" MinHeight="680"
+        WindowStartupLocation="CenterScreen"
+        Background="{DynamicResource StoneBlackBrush}"
+        FontFamily="{DynamicResource BodyFont}"
+        Foreground="{DynamicResource ParchmentBrush}">
+  <views:MainView x:Name="View" />
+</Window>

@@ -1,0 +1,220 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+  <!-- =========================================================================
+       Stone button: a chiselled slab with a dark bevel and gold edging.
+       ========================================================================= -->
+  <ControlTheme x:Key="StoneButton" TargetType="Button">
+    <Setter Property="Background" Value="{DynamicResource StoneButtonBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource GoldDarkBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource ParchmentBrush}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="Padding" Value="12,5" />
+    <Setter Property="FontFamily" Value="{DynamicResource SerifFont}" />
+    <Setter Property="FontSize" Value="13" />
+    <Setter Property="HorizontalContentAlignment" Value="Center" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+    <Setter Property="Cursor" Value="Hand" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Border Name="PART_Bevel" Background="{DynamicResource StoneBlackBrush}" Padding="1" CornerRadius="3">
+          <Border Name="PART_Border"
+                  Background="{TemplateBinding Background}"
+                  BorderBrush="{TemplateBinding BorderBrush}"
+                  BorderThickness="{TemplateBinding BorderThickness}"
+                  CornerRadius="2">
+            <ContentPresenter Name="PART_ContentPresenter"
+                              Content="{TemplateBinding Content}"
+                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                              Padding="{TemplateBinding Padding}"
+                              Foreground="{TemplateBinding Foreground}"
+                              HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                              VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
+          </Border>
+        </Border>
+      </ControlTemplate>
+    </Setter>
+
+    <Style Selector="^:pointerover /template/ Border#PART_Border">
+      <Setter Property="Background" Value="{DynamicResource StoneButtonHoverBrush}" />
+      <Setter Property="BorderBrush" Value="{DynamicResource GoldBrush}" />
+    </Style>
+    <Style Selector="^:pressed /template/ Border#PART_Border">
+      <Setter Property="Background" Value="{DynamicResource StoneButtonPressedBrush}" />
+    </Style>
+    <Style Selector="^:pressed /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="RenderTransform" Value="translate(0px, 1px)" />
+    </Style>
+    <Style Selector="^.active /template/ Border#PART_Border">
+      <Setter Property="Background" Value="{DynamicResource GoldActiveBrush}" />
+      <Setter Property="BorderBrush" Value="{DynamicResource GoldBrightBrush}" />
+    </Style>
+    <Style Selector="^.active">
+      <Setter Property="Foreground" Value="{DynamicResource GoldBrightBrush}" />
+    </Style>
+    <Style Selector="^:disabled">
+      <Setter Property="Opacity" Value="0.4" />
+    </Style>
+  </ControlTheme>
+
+  <!-- Every plain Button in the app is stone. -->
+  <ControlTheme x:Key="{x:Type Button}" TargetType="Button" BasedOn="{StaticResource StoneButton}" />
+
+  <!-- Square inventory / spell slot, deeply inset like the original belt. -->
+  <ControlTheme x:Key="SlotButton" TargetType="Button" BasedOn="{StaticResource StoneButton}">
+    <Setter Property="Width" Value="52" />
+    <Setter Property="Height" Value="52" />
+    <Setter Property="Padding" Value="3" />
+    <Setter Property="Background" Value="{DynamicResource InsetBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource StoneLightBrush}" />
+    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+    <Setter Property="VerticalContentAlignment" Value="Stretch" />
+    <Style Selector="^:pointerover /template/ Border#PART_Border">
+      <Setter Property="Background" Value="{DynamicResource InsetBrush}" />
+      <Setter Property="BorderBrush" Value="{DynamicResource GoldBrush}" />
+    </Style>
+    <Style Selector="^.active /template/ Border#PART_Border">
+      <Setter Property="Background" Value="{DynamicResource GoldActiveBrush}" />
+      <Setter Property="BorderBrush" Value="{DynamicResource GoldBrightBrush}" />
+      <Setter Property="BorderThickness" Value="2" />
+    </Style>
+  </ControlTheme>
+
+  <!-- Party portrait frame. -->
+  <ControlTheme x:Key="PortraitButton" TargetType="Button">
+    <Setter Property="Background" Value="{DynamicResource StoneBlackBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource StoneLightBrush}" />
+    <Setter Property="BorderThickness" Value="2" />
+    <Setter Property="Padding" Value="3" />
+    <Setter Property="Cursor" Value="Hand" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Border Name="PART_Border"
+                Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                CornerRadius="2"
+                BoxShadow="0 2 6 0 #A0000000">
+          <ContentPresenter Name="PART_ContentPresenter"
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}"
+                            Padding="{TemplateBinding Padding}" />
+        </Border>
+      </ControlTemplate>
+    </Setter>
+    <Style Selector="^:pointerover /template/ Border#PART_Border">
+      <Setter Property="BorderBrush" Value="{DynamicResource GoldBrush}" />
+    </Style>
+    <Style Selector="^.selected /template/ Border#PART_Border">
+      <Setter Property="BorderBrush" Value="{DynamicResource GoldBrightBrush}" />
+      <Setter Property="BoxShadow" Value="0 0 10 1 #90F0D27A" />
+    </Style>
+  </ControlTheme>
+
+  <!-- Dialogue choice: a parchment-text line that lights up gold on hover. -->
+  <ControlTheme x:Key="DialogueChoiceButton" TargetType="Button">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="Foreground" Value="{DynamicResource ParchmentBrush}" />
+    <Setter Property="FontFamily" Value="{DynamicResource BodyFont}" />
+    <Setter Property="FontSize" Value="15" />
+    <Setter Property="Padding" Value="8,4" />
+    <Setter Property="HorizontalContentAlignment" Value="Left" />
+    <Setter Property="Cursor" Value="Hand" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Border Name="PART_Border" Background="{TemplateBinding Background}" CornerRadius="2">
+          <ContentPresenter Name="PART_ContentPresenter"
+                            Content="{TemplateBinding Content}"
+                            Padding="{TemplateBinding Padding}"
+                            Foreground="{TemplateBinding Foreground}"
+                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" />
+        </Border>
+      </ControlTemplate>
+    </Setter>
+    <Style Selector="^:pointerover">
+      <Setter Property="Foreground" Value="{DynamicResource GoldBrightBrush}" />
+    </Style>
+    <Style Selector="^:pointerover /template/ Border#PART_Border">
+      <Setter Property="Background" Value="#30F0D27A" />
+    </Style>
+  </ControlTheme>
+
+  <!-- =========================================================================
+       Vital bars: jewel-toned fill in a black trough with a glassy highlight.
+       Works horizontally (character sheet) and vertically (portrait bars).
+       ========================================================================= -->
+  <ControlTheme x:Key="{x:Type ProgressBar}" TargetType="ProgressBar">
+    <Setter Property="Background" Value="{DynamicResource BarTroughBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource HealthBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource StoneBlackBrush}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="MinWidth" Value="4" />
+    <Setter Property="MinHeight" Value="4" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Border Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                CornerRadius="1"
+                ClipToBounds="True">
+          <Panel>
+            <Border Name="PART_Indicator" Background="{TemplateBinding Foreground}" />
+            <Border Name="PART_Gloss" Background="{DynamicResource BarGlossBrush}" IsHitTestVisible="False" />
+          </Panel>
+        </Border>
+      </ControlTemplate>
+    </Setter>
+    <Style Selector="^:horizontal /template/ Border#PART_Indicator">
+      <Setter Property="HorizontalAlignment" Value="Left" />
+      <Setter Property="VerticalAlignment" Value="Stretch" />
+    </Style>
+    <Style Selector="^:vertical /template/ Border#PART_Indicator">
+      <Setter Property="HorizontalAlignment" Value="Stretch" />
+      <Setter Property="VerticalAlignment" Value="Bottom" />
+    </Style>
+    <Style Selector="^:horizontal.health">
+      <Setter Property="Foreground" Value="{DynamicResource HealthBarBrush}" />
+    </Style>
+    <Style Selector="^:horizontal.mana">
+      <Setter Property="Foreground" Value="{DynamicResource ManaBarBrush}" />
+    </Style>
+    <Style Selector="^:vertical.mana">
+      <Setter Property="Foreground" Value="{DynamicResource ManaBrush}" />
+    </Style>
+    <Style Selector="^.xp">
+      <Setter Property="Foreground" Value="{DynamicResource XpBrush}" />
+    </Style>
+  </ControlTheme>
+
+  <!-- =========================================================================
+       Stone window: gold-titled panel used for dialogue and the character sheet.
+       ========================================================================= -->
+  <ControlTheme x:Key="StoneWindow" TargetType="HeaderedContentControl">
+    <Setter Property="Foreground" Value="{DynamicResource ParchmentBrush}" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Border Background="{DynamicResource StoneBlackBrush}" Padding="2" CornerRadius="4"
+                BoxShadow="0 6 24 4 #C0000000">
+          <Border BorderBrush="{DynamicResource GoldBrush}" BorderThickness="1" CornerRadius="3"
+                  Background="{DynamicResource WindowBodyBrush}">
+            <DockPanel>
+              <Border DockPanel.Dock="Top" Background="{DynamicResource WindowHeaderBrush}"
+                      BorderBrush="{DynamicResource GoldDarkBrush}" BorderThickness="0,0,0,1"
+                      Padding="14,6" CornerRadius="3,3,0,0">
+                <ContentPresenter Name="PART_HeaderPresenter"
+                                  Content="{TemplateBinding Header}"
+                                  Foreground="{DynamicResource GoldBrightBrush}"
+                                  FontFamily="{DynamicResource SerifFont}"
+                                  FontSize="16" FontWeight="SemiBold" />
+              </Border>
+              <ContentPresenter Name="PART_ContentPresenter"
+                                Content="{TemplateBinding Content}"
+                                ContentTemplate="{TemplateBinding ContentTemplate}"
+                                Padding="16,12" />
+            </DockPanel>
+          </Border>
+        </Border>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+</ResourceDictionary>

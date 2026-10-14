@@ -1,0 +1,18 @@
+[
+  {
+    "id": "travel_to_glacern",
+    "title": "Travel to Glacern",
+    "summary": "The Krug have razed the farmstead. Warn the garrison at Glacern.",
+    "objectives": [
+      { "id": "hear_hollin",  "type": "Talk",  "target": "old_hollin",       "description": "Hear the dying words of Old Hollin" },
+      { "id": "clear_farm",   "type": "Kill",  "target": "krug_scout",       "description": "Drive the Krug scouts from the farmstead", "count": 3 },
+      { "id": "canyons",      "type": "Reach", "target": "krug_canyons",     "description": "Pass through the Krug canyons" },
+      { "id": "slay_braak",   "type": "Kill",  "target": "braak",            "description": "Slay the Braak leading the raid" },
+      { "id": "krug_slain",   "type": "Kill",  "target": "krug",             "description": "Thin the Krug war band", "count": 15, "optional": true },
+      { "id": "reach_gates",  "type": "Reach", "target": "glacern_gate",     "description": "Reach the gates of Glacern" },
+      { "id": "report",       "type": "Talk",  "target": "glacern_captain",  "description": "Report to the Captain of the Guard" }
+    ],
+    "completionText": "Glacern has been warned. The road ahead leads deeper into Ehb...",
+    "rewardGold": 75
+  }
+]

@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/DungeonSiege.App/DungeonSiege.App.csproj" />
+    <Project Path="src/DungeonSiege.Core/DungeonSiege.Core.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/DungeonSiege.App.Tests/DungeonSiege.App.Tests.csproj" />
+    <Project Path="tests/DungeonSiege.Core.Tests/DungeonSiege.Core.Tests.csproj" />
+  </Folder>
+</Solution>

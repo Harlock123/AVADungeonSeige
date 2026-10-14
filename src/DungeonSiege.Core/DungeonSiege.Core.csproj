@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Pure engine: no UI dependencies. Everything here is unit-testable headless. -->
+  <PropertyGroup>
+    <RootNamespace>DungeonSiege.Core</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Chapter content ships as embedded JSON so it can be modded / hot-swapped later. -->
+    <EmbeddedResource Include="Content\Data\*.json" LogicalName="DungeonSiege.Content.%(Filename)%(Extension)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="DungeonSiege.Core.Tests" />
+  </ItemGroup>
+</Project>

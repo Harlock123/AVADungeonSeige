@@ -1,0 +1,12 @@
+{
+  "id": "chapter1",
+  "title": "Chapter 1: Ashes of the Farmstead",
+  "intro": [
+    "The Kingdom of Ehb. For a generation the Krug have kept to their canyons, and the farmers of the western vale have known peace.",
+    "This morning, smoke rose over the fields. The Krug have come."
+  ],
+  "protagonist": "farmer",
+  "startPosition": { "x": 6, "y": 33 },
+  "startingItems": { "potion_health": 2, "potion_mana": 1 },
+  "startingGold": 12
+}
